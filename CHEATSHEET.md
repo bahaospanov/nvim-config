@@ -260,3 +260,34 @@ Fuzzy finder plugin. Opens a floating popup: search input + results list + previ
 - `Tab` — toggle select item
 - `Shift+Tab` — deselect
 - `Enter` — open all selected
+
+---
+
+# Marks
+
+## Vim Marks (positions within files)
+
+- `ma`–`mz` — set local mark (per-buffer, lost on quit)
+- `mA`–`mZ` — set global mark (persists across sessions, works across files)
+- `` `a `` — jump to exact position of mark `a`
+- `'a` — jump to line of mark `a`
+- `:marks` — list all marks
+- `:delm a` — delete mark `a`
+- `:delm!` — delete all lowercase marks
+
+### Special marks (automatic)
+
+- `` `` ` `` `` — position before last jump
+- `'.` — last edit position
+- `'^` — last insert position
+- `'0`–`'9` — cursor positions from previous sessions (set automatically on exit)
+
+## Harpoon (file bookmarks)
+
+Quick-switch between your active working files.
+
+- `<leader>ha` — add current file to harpoon list
+- `<leader>hh` — toggle harpoon menu
+- `<leader>1`–`4` — jump to file 1–4
+- `<leader>hp` — prev file in list
+- `<leader>hn` — next file in list
