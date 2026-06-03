@@ -20,11 +20,13 @@ Implications:
 
 The `.git` pointer is a file *inside* the working tree, so iCloud syncs it to every machine — but each machine would need it to name a *different* local git-dir path. One synced file can't hold two values, so git only works on this Mac. Don't try to run git on a second machine; it would rewrite the synced pointer and break this Mac too.
 
-The working flow — **edit anywhere, commit only here**:
+The working flow — **edit anywhere, commit only on the machine with the remote**:
 
-1. Edit freely in Obsidian or Neovim on the other machine. iCloud syncs the files back to this Mac.
-2. On this Mac, wait for iCloud to pull those edits (confirm the changes are present in the files).
-3. Commit/push from here as normal (`git add <files by name>` → commit → push).
+1. Edit freely in Obsidian, Neovim, or via Claude Code on any machine. iCloud syncs files across.
+2. On the machine with the bare repo (`~/artifacts/git-storage/nvim-config`), wait for iCloud to pull those edits.
+3. Commit/push from there as normal (`git add <files by name>` → commit → push).
+
+When using Claude Code to apply changes (e.g. regenerating `kickstart-customizations.patch`), do it in the vault directory on any machine — then commit from the machine that has the remote.
 
 Git here is for versioning + backup, not commit-where-you-edited.
 
