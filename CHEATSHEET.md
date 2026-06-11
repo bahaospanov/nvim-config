@@ -80,6 +80,7 @@ Flags: `g` = all on line, `c` = confirm, `i` = case-insensitive, `I` = case-sens
 
 - `:w` save, `:q` quit, `:wq` save+quit, `:q!` force quit
 - `:e file` open file
+-  `:e!` - reload file, discard all changes
 
 ## Windows
 
@@ -98,6 +99,11 @@ Flags: `g` = all on line, `c` = confirm, `i` = case-insensitive, `I` = case-sens
 - `:tabonly` — close all other tabs
 - `:tabs` — list all tabs
 
+## Folds
+- `zo` -- open folds under cursor
+- `zO` -- open All folds under cursor
+- `zc` - close folds under cursor
+
 ## Tabby (tab rename plugin)
 
 - `<leader>tr` — rename current tab (prompts for name)
@@ -113,11 +119,6 @@ Flags: `g` = all on line, `c` = confirm, `i` = case-insensitive, `I` = case-sens
 # NeoTree
 
 File explorer sidebar plugin.
-
-## Open / Close
-
-- `:Neotree toggle` — show/hide sidebar
-- `:Neotree focus` — jump into tree
 
 ## Navigation
 
@@ -135,6 +136,8 @@ File explorer sidebar plugin.
 - `H` toggle hidden files
 - `Backspace` — zoom out (go to parent dir)
 - `.` — set current dir as root
+- P — preview file
+- `<Leader e>` — show/hide sidebar
 
 ## Help
 
