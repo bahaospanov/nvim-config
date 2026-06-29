@@ -3,7 +3,6 @@
 Modal text editor. Mode = what keys do.
 
 ## Modes
-
 - **Normal** — navigate/commands. Default. `Esc` returns here.
 - **Insert** — type text. Enter via `i`.
 - **Append** - append text. Enter via `A`.
@@ -11,30 +10,27 @@ Modal text editor. Mode = what keys do.
 - **Command** — `:` prefix, runs commands.
 
 ## Move (Normal)
-
 - `h j k l` — left/down/up/right
 - `w` / `b` — next/prev word
 - `0` / `$` — line start/end
 - `gg` / `G` — file top/bottom
 - `{n}G` — line n
 - `/text` — search forward, `n` next, `N` prev
-- `Ctrl+o` — jump back in jump list
-- `Ctrl+i` — jump forward in jump list
-
+Jump back in jump list - `Ctrl+o`
+Jump forward - `Ctrl+i`
+---
 ## Edit (Normal)
-
 - `i` insert before, `a` after, `o` new line below, `O` above
 - `x` delete char, `dd` delete line, `yy` copy line, `p` paste
 - `dw` delete word, `d$` to line end
 - `u` undo,  `U` undo line,`Ctrl+r` redo
 - `r{char}` replace char, `cw` change word
-
+---
 ## Change
 - `ce` change till the end of the word, same as `cw`
 - `c$` discard till the end of line and type in changes
-
-## Go commands g
-
+---
+## Go commands `g`
 - `gg` — go to file top
 - `G` — go to file bottom
 - `grd` — go to definition (default `gd`, remapped in this layout)
@@ -42,31 +38,17 @@ Modal text editor. Mode = what keys do.
 - `grr` — go to references (default `gr`, remapped in this layout)
 - `gri` — go to implementation (default `gi`, remapped in this layout)
 - `grn` — rename
-- `gra` — code action
 - `gt` / `gT` — next/prev tab
 - `gf` — open file under cursor
-- `g~` — toggle case (visual selection or motion)
 - `gu` — lowercase (e.g. `guw` lowercases word)
 - `gU` — uppercase (e.g. `gUw` uppercases word)
-- `gv` — reselect last visual selection
-- `gq` — format/wrap text (motion or visual)
 - `g;` / `g,` — jump back/forward in change list
 
-## Diagnostics (LSP errors)
-
-- `]d` / `[d` — jump to next/prev diagnostic
-- `K` — hover, show error detail under cursor
-- `gra` — code action (auto-fix if available)
-- `<leader>sd` — Telescope: all diagnostics in project
-- `:lua vim.diagnostic.open_float()` — show full error in popup
-
-## Visual
-
+## Visual `v`
 - `v` char, `V` line, `Ctrl+v` block
 - Then `d` cut, `y` copy, `c` change
 
-## Substitute Command s
-
+## Substitute Command `s`
 - `:s/old/new` — replace first match on current line
 - `:s/old/new/g` — replace all matches on current line
 - `:%s/old/new/g` — replace all matches in file
@@ -77,20 +59,17 @@ Modal text editor. Mode = what keys do.
 Flags: `g` = all on line, `c` = confirm, `i` = case-insensitive, `I` = case-sensitive
 
 ## Files (Command)
-
 - `:w` save, `:q` quit, `:wq` save+quit, `:q!` force quit
 - `:e file` open file
 -  `:e!` - reload file, discard all changes
 
 ## Windows
-
 - `:split` / `:vsplit` — horizontal/vertical
 - `:split | Terminal` - open Terminal in split
 - `Ctrl+w` + `h/j/k/l` — switch
 - `Ctrl+w` + `q` — close
 
 ## Tabs
-
 - `:tabnew` — open new empty tab
 - `:tabnew file` — open file in new tab
 - `gt` / `gT` — next/prev tab
@@ -105,12 +84,10 @@ Flags: `g` = all on line, `c` = confirm, `i` = case-insensitive, `I` = case-sens
 - `zc` - close folds under cursor
 
 ## Tabby (tab rename plugin)
-
 - `<leader>tr` — rename current tab (prompts for name)
 - `<leader>tc` — clear tab name (revert to filename)
 
 ## Help
-
 - `:help {topic}` — built-in docs
 - `vimtutor` — interactive tutorial (run in shell)
 
@@ -235,6 +212,9 @@ Split = divides current window, both visible at same time. Tab = full separate s
 # Telescope
 
 Fuzzy finder plugin. Opens a floating popup: search input + results list + preview pane.
+
+## Keybinds
+Open Telescope Live grep - `<leader> sg`
 
 ## Common Pickers
 
