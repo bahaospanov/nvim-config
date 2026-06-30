@@ -38,3 +38,4 @@ brew install neovim tree-sitter-cli
 
 - **Backup** (live config → here): `/backup-nvim` skill in Claude Code
 - **Restore** (here → `~/.config/nvim`): `/restore-nvim` skill in Claude Code
+- **Diff** (see what's changed on either side): `/diff-nvim` skill in Claude Code
