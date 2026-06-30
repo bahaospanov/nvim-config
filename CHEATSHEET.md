@@ -18,6 +18,7 @@ Modal text editor. Mode = what keys do.
 - `/text` — search forward, `n` next, `N` prev
 Jump back in jump list - `Ctrl+o`
 Jump forward - `Ctrl+i`
+Center view on selected line - `zz`
 ---
 ## Edit (Normal)
 - `i` insert before, `a` after, `o` new line below, `O` above
@@ -123,47 +124,6 @@ File explorer sidebar plugin.
 
 ---
 
-# Neogit
-
-Git UI plugin. Opens a status buffer with staged/unstaged changes.
-
-## Open
-
-- `:Neogit` — open Neogit status buffer
-
-## Status Buffer
-
-- `Tab` — toggle diff for file under cursor
-- `s` — stage file/hunk, `u` — unstage
-- `S` — stage all, `U` — unstage all
-- `d` — open diff view
-- `x` — discard changes
-
-## Commits
-
-- `c c` — commit (opens commit message editor)
-- `c a` — amend last commit
-- `c e` — extend last commit (amend without editing message)
-
-## Branches
-
-- `b b` — checkout branch
-- `b c` — create and checkout branch
-- `b l` — list branches
-
-## Push / Pull / Fetch
-
-- `p p` — push
-- `F F` — pull (fetch + merge)
-- `f f` — fetch
-
-## Help
-
-- `?` — show all key bindings
-- `q` — close / go back
-
----
-
 # Buffers
 
 Open files in memory. Multiple buffers = multiple open files.
@@ -210,16 +170,11 @@ Split = divides current window, both visible at same time. Tab = full separate s
 ---
 
 # Telescope
-
 Fuzzy finder plugin. Opens a floating popup: search input + results list + preview pane.
 
-## Keybinds
-Open Telescope Live grep - `<leader> sg`
-
 ## Common Pickers
-
-- `:Telescope find_files` — find file by name in project
-- `:Telescope live_grep` — search text inside files
+- Find file by name in project - `<leader> sf`, `:Telescope find_files`
+- Search text inside files - `<leader> sg`, `:Telescope live_grep`
 - `:Telescope buffers` — switch between open buffers
 - `:Telescope oldfiles` — recently opened files
 - `:Telescope help_tags` — search Neovim help docs
@@ -266,7 +221,6 @@ Open Telescope Live grep - `<leader> sg`
 - `'0`–`'9` — cursor positions from previous sessions (set automatically on exit)
 
 ## Harpoon (file bookmarks)
-
 Quick-switch between your active working files.
 
 - `<leader>ha` — add current file to harpoon list
