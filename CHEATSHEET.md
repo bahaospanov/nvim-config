@@ -220,11 +220,13 @@ Fuzzy finder plugin. Opens a floating popup: search input + results list + previ
 - `'^` — last insert position
 - `'0`–`'9` — cursor positions from previous sessions (set automatically on exit)
 
-## Harpoon (file bookmarks)
-Quick-switch between your active working files.
+## Bookmarks (bookmarks.nvim)
+Persistent, annotatable line bookmarks (replaces Harpoon/Grapple).
 
-- `<leader>ha` — add current file to harpoon list
-- `<leader>hh` — toggle harpoon menu
-- `<leader>1`–`4` — jump to file 1–4
-- `<leader>hp` — prev file in list
-- `<leader>hn` — next file in list
+- `<leader>bm` — toggle bookmark on current line
+- `<leader>ba` — annotate bookmark
+- `<leader>bn` — next bookmark
+- `<leader>bp` — prev bookmark
+- `<leader>bc` — clean bookmarks (current buffer)
+- `<leader>bl` — list all bookmarks (telescope picker)
+  - `<C-d>` (in picker) — delete bookmark under cursor

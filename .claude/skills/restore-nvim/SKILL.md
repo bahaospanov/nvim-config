@@ -37,6 +37,18 @@ cp "$(pwd)/custom-plugins/"*.lua "$HOME/.config/nvim/lua/custom/plugins/"
 
 Report which files were copied.
 
+### 1b. Copy non-plugin custom modules
+
+`custom/` in this backup repo holds plain Lua modules that plugin specs `require()` (e.g. `bookmarks_picker.lua`, required by `custom-plugins/bookmarks.lua`) — these belong directly in `lua/custom/`, not `lua/custom/plugins/`.
+
+Use `find` rather than a glob — `shopt -s nullglob` is bash-only and won't work under zsh:
+
+```bash
+find "$(pwd)/custom" -maxdepth 1 -name "*.lua" -type f -exec cp -v {} "$HOME/.config/nvim/lua/custom/" \;
+```
+
+Report which files were copied (or none found).
+
 ### 2. Copy lazy-lock.json
 
 ```bash
