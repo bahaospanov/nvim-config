@@ -60,6 +60,12 @@ Compare the plugin files just synced in step 1 against what `CHEATSHEET.md` docu
 
 This is a judgment call, not a mechanical diff — read the actual `keys = {...}` tables in the synced `.lua` files to get the leader mappings right.
 
+### 4b. Update README.md system dependencies
+
+Plugin specs can rely on **system binaries** that live outside `~/.config/nvim` and are therefore captured by nothing in this backup (not the lua files, not lazy-lock.json). A fresh restore silently fails to work unless those are installed. Examples: image.nvim needs `imagemagick` (the `magick` CLI); other plugins may need `ripgrep`, `fd`, `node`, etc.
+
+For each plugin file synced in step 1, check whether it needs a system binary (look for `processor`/`backend` options, `build` commands, or external CLI calls). If so, make sure the README's `## Prerequisites (fresh machine)` section lists the matching `brew install` line and any terminal/environment requirement. Add it if missing.
+
 ### 5. Report summary
 
 List all files updated, including whether CHEATSHEET.md changed and why. Remind user: commit from this Mac with `git add <files by name>` (never `git add -A`) then push.

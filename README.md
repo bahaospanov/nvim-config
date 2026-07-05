@@ -24,7 +24,10 @@ AGENT.md
 
 ```bash
 brew install neovim tree-sitter-cli
+brew install imagemagick   # required by image.nvim (magick_cli processor) for inline image viewing
 ```
+
+image.nvim also needs a terminal that speaks the Kitty graphics protocol (Ghostty/Kitty/WezTerm). Inside tmux, set `allow-passthrough on` in `~/.config/tmux/tmux.conf` (not part of this backup).
 
 ## What the patch changes
 
