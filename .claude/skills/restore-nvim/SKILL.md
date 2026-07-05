@@ -29,33 +29,35 @@ mkdir -p "$HOME/.config/nvim/lua/custom/plugins/"
 
 ## Steps
 
-### 1. Copy custom plugin files
+### 1. Mirror custom plugin files
+
+Restore must be **one-to-one**: a plugin dropped from the backup (e.g. harpoon swapped for bookmarks) must also be removed from the live config. Plain `cp` is additive and leaves the stale file behind, so use `rsync --delete` to mirror `lua/custom/plugins/` exactly to the backup.
 
 ```bash
-cp "$(pwd)/custom-plugins/"*.lua "$HOME/.config/nvim/lua/custom/plugins/"
+rsync -a --delete "$(pwd)/custom-plugins/" "$HOME/.config/nvim/lua/custom/plugins/"
 ```
 
-Report which files were copied.
+`--delete` removes any file in live `plugins/` that is not in the backup. That dir is backup-managed only, so this is intended — but warn the user it wipes any live-only plugin not tracked here. Report which files were copied and which were deleted.
 
-### 1b. Copy non-plugin custom modules
+### 2. Copy non-plugin custom modules
 
 `custom/` in this backup repo holds plain Lua modules that plugin specs `require()` (e.g. `bookmarks_picker.lua`, required by `custom-plugins/bookmarks.lua`) — these belong directly in `lua/custom/`, not `lua/custom/plugins/`.
 
-Use `find` rather than a glob — `shopt -s nullglob` is bash-only and won't work under zsh:
+Mirror the top-level `.lua` files one-to-one too. `rsync` with `--include='*.lua' --exclude='*'` deletes only stale top-level modules and leaves the `plugins/` subdir (mirrored in step 1) untouched:
 
 ```bash
-find "$(pwd)/custom" -maxdepth 1 -name "*.lua" -type f -exec cp -v {} "$HOME/.config/nvim/lua/custom/" \;
+rsync -a --delete --include='*.lua' --exclude='*' "$(pwd)/custom/" "$HOME/.config/nvim/lua/custom/"
 ```
 
-Report which files were copied (or none found).
+Report which files were copied and which were deleted (or none found).
 
-### 2. Copy lazy-lock.json
+### 3. Copy lazy-lock.json
 
 ```bash
 cp "$(pwd)/lazy-lock.json" "$HOME/.config/nvim/lazy-lock.json"
 ```
 
-### 3. Apply init.lua patch (if needed)
+### 4. Apply init.lua patch (if needed)
 
 Check if patch is already applied:
 ```bash
@@ -70,10 +72,26 @@ git apply --check "$(pwd)/kickstart-customizations.patch" 2>&1
 - Already applied: skip, tell user.
 - Other error: show error, tell user to apply manually.
 
-### 4. Mason tools
+### 5. Install system dependencies
+
+Plugin specs can rely on **system binaries** that live outside `~/.config/nvim` and are not captured by this backup (not the lua files, not lazy-lock.json). Without them a plugin silently fails at runtime. These are tracked in `system-deps.txt` at the repo root (kept current by the backup skill's step 6).
+
+Parse the manifest (first token per non-comment line = brew package) and check each is installed:
+
+```bash
+grep -vE '^\s*(#|$)' "$(pwd)/system-deps.txt" | awk '{print $1}' | while read -r pkg; do
+  command -v "$pkg" >/dev/null 2>&1 && echo "OK  $pkg" || echo "MISSING  $pkg"
+done
+```
+
+Note: the binary name usually matches the brew package, but not always (e.g. `imagemagick` provides `magick`). If a package reports `MISSING` but you suspect the binary is named differently, verify with `brew list <pkg>` before prompting.
+
+For any genuinely missing package, run — or tell the user to run — `brew install <pkg>`. Also check the README's `## Prerequisites (fresh machine)` for any non-brew terminal/environment requirement (Kitty-graphics terminal, tmux passthrough) and relay it.
+
+### 6. Mason tools
 
 Remind user: open `nvim`, run `:Mason` to install tools listed in `$(pwd)/mason-tools.txt`. Not auto-installed — Mason installs interactively.
 
-### 5. Report summary
+### 7. Report summary
 
 List all files written to `~/.config/nvim`. Remind user to run `:Lazy restore` inside nvim to pin plugin versions from lockfile.
