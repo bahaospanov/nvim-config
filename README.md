@@ -6,12 +6,14 @@ Base: [kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim) at commit `4b
 
 ```
 custom-plugins/
-  harpoon.lua
+  bookmarks.lua
+  image.lua
   markview.lua
   neo-tree.lua
-  neogit.lua
   ufo.lua
   vim-tmux-navigator.lua
+custom/
+  bookmarks_picker.lua
 kickstart-base-commit.txt
 kickstart-customizations.patch
 lazy-lock.json

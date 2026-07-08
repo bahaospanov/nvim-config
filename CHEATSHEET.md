@@ -19,6 +19,7 @@ Modal text editor. Mode = what keys do.
 Jump back in jump list - `Ctrl+o`
 Jump forward - `Ctrl+i`
 Center view on selected line - `zz`
+
 ---
 ## Edit (Normal)
 - `i` insert before, `a` after, `o` new line below, `O` above
@@ -66,9 +67,10 @@ Flags: `g` = all on line, `c` = confirm, `i` = case-insensitive, `I` = case-sens
 
 ## Windows
 - `:split` / `:vsplit` — horizontal/vertical
-- `:split | Terminal` - open Terminal in split
+- `:split | term` - open Terminal in split
 - `Ctrl+w` + `h/j/k/l` — switch
 - `Ctrl+w` + `q` — close
+- `Ctrl+h/j/k/l` — switch window/pane (vim-tmux-navigator; also crosses into tmux panes seamlessly)
 
 ## Tabs
 - `:tabnew` — open new empty tab
@@ -83,14 +85,41 @@ Flags: `g` = all on line, `c` = confirm, `i` = case-insensitive, `I` = case-sens
 - `zo` -- open folds under cursor
 - `zO` -- open All folds under cursor
 - `zc` - close folds under cursor
-
-## Tabby (tab rename plugin)
-- `<leader>tr` — rename current tab (prompts for name)
-- `<leader>tc` — clear tab name (revert to filename)
+- `zR` — open all folds in file (nvim-ufo)
+- `zM` — close all folds in file (nvim-ufo)
 
 ## Help
 - `:help {topic}` — built-in docs
 - `vimtutor` — interactive tutorial (run in shell)
+
+---
+
+# Gitsigns (inline git info)
+
+Gutter signs for changed lines + inline blame. `current_line_blame` is enabled in `init.lua` (customization, not stock kickstart) — shows the commit that last touched the current line, inline at end of line, after a 300ms delay.
+
+## Navigation
+- `]c` / `[c` — jump to next/prev git change (hunk)
+
+## Hunk Actions
+- `<leader>hs` — stage hunk (`v` visual mode: stage selected lines)
+- `<leader>hr` — reset hunk (`v` visual mode: reset selected lines)
+- `<leader>hS` — stage whole buffer
+- `<leader>hR` — reset whole buffer
+- `<leader>hp` — preview hunk (floating diff)
+- `<leader>hi` — preview hunk inline
+- `<leader>hb` — blame current line (full commit message popup)
+- `<leader>hd` — diff buffer against index
+- `<leader>hD` — diff buffer against last commit (`@`)
+- `<leader>hq` — hunks quickfix list (current file)
+- `<leader>hQ` — hunks quickfix list (all files in repo)
+
+## Toggles
+- `<leader>tb` — toggle inline current-line blame on/off
+- `<leader>tw` — toggle intra-line word diff
+
+## Text Object
+- `ih` — select hunk (e.g. `dih` deletes the hunk under cursor)
 
 ---
 
