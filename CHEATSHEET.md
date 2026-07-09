@@ -259,3 +259,11 @@ Persistent, annotatable line bookmarks (replaces Harpoon/Grapple).
 - `<leader>bc` — clean bookmarks (current buffer)
 - `<leader>bl` — list all bookmarks (telescope picker)
   - `<C-d>` (in picker) — delete bookmark under cursor
+
+---
+
+# LazyGit (lazygit.nvim)
+
+Git UI in Neovim. Invokes the external `lazygit` command in a floating window.
+
+- `<leader>lg` — open LazyGit

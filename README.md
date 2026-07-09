@@ -8,6 +8,7 @@ Base: [kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim) at commit `4b
 custom-plugins/
   bookmarks.lua
   image.lua
+  lazygit.lua
   markview.lua
   neo-tree.lua
   ufo.lua
@@ -25,7 +26,7 @@ AGENT.md
 ## Prerequisites (fresh machine)
 
 ```bash
-brew install neovim tree-sitter-cli
+brew install neovim tree-sitter-cli lazygit
 brew install imagemagick   # required by image.nvim (magick_cli processor) for inline image viewing
 ```
 

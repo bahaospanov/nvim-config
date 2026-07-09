@@ -1,5 +1,5 @@
 diff --git a/init.lua b/init.lua
-index 8d1f19a..7ec5890 100644
+index 8d1f19a..d362d83 100644
 --- a/init.lua
 +++ b/init.lua
 @@ -91,7 +91,7 @@ vim.g.mapleader = ' '
@@ -11,6 +11,17 @@ index 8d1f19a..7ec5890 100644
  
  -- [[ Setting options ]]
  -- See `:help vim.o`
+@@ -126,8 +126,8 @@ vim.o.undofile = true
+ vim.o.ignorecase = true
+ vim.o.smartcase = true
+ 
+--- Keep signcolumn on by default
+-vim.o.signcolumn = 'yes'
++-- Keep signcolumn on by default, wide enough for diagnostics + bookmarks together
++vim.o.signcolumn = 'yes:2'
+ 
+ -- Decrease update time
+ vim.o.updatetime = 250
 @@ -189,6 +189,15 @@ vim.diagnostic.config {
  
  vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
@@ -38,7 +49,17 @@ index 8d1f19a..7ec5890 100644
      },
    },
  
-@@ -602,7 +615,7 @@ require('lazy').setup({
+@@ -415,6 +428,9 @@ require('lazy').setup({
+       vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })
+       vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
+       vim.keymap.set('n', '<leader>sc', builtin.commands, { desc = '[S]earch [C]ommands' })
++      vim.keymap.set('n', '<leader>sC', function()
++        builtin.lsp_dynamic_workspace_symbols { symbols = 'class' }
++      end, { desc = '[S]earch [C]lasses (workspace)' })
+       vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find existing buffers' })
+ 
+       -- This runs on LSP attach per buffer (see main LSP attach function in 'neovim/nvim-lspconfig' config for more info,
+@@ -602,7 +618,7 @@ require('lazy').setup({
        local servers = {
          -- clangd = {},
          -- gopls = {},
@@ -47,7 +68,7 @@ index 8d1f19a..7ec5890 100644
          -- rust_analyzer = {},
          --
          -- Some languages (like typescript) have entire language plugins that can be useful:
-@@ -867,12 +880,35 @@ require('lazy').setup({
+@@ -867,12 +883,35 @@ require('lazy').setup({
        --  You could remove this setup call if you don't like it,
        --  and try some other statusline plugin
        local statusline = require 'mini.statusline'
@@ -88,7 +109,7 @@ index 8d1f19a..7ec5890 100644
        ---@diagnostic disable-next-line: duplicate-set-field
        statusline.section_location = function() return '%2l:%-2v' end
  
-@@ -952,13 +988,13 @@ require('lazy').setup({
+@@ -952,13 +991,13 @@ require('lazy').setup({
    -- require 'kickstart.plugins.lint',
    -- require 'kickstart.plugins.autopairs',
    -- require 'kickstart.plugins.neo-tree',
